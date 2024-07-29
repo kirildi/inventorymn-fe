@@ -10,7 +10,10 @@ pub fn App() -> Element {
         div {
             class: "w-full h-full",
             Header {},
-            WelcomePage {},
+            div {
+                class: "flex flex-row m-8",
+                WelcomePage {},
+            }
 
         }
     )
