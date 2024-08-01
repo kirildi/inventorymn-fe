@@ -13,7 +13,7 @@ const _STYLES_URL: &str = manganis::mg!(file("public/assets/css/styles.css"));
 
 fn main() {
     const _DEFAULT_WIDTH: i32 = 1024;
-    const _DEFAULT_HEIGHT: i32 = 520;
+    const _DEFAULT_HEIGHT: i32 = 680;
     const _DEFAULT_WINDOW_SIZE: LogicalSize<i32> =
         LogicalSize::new(_DEFAULT_WIDTH, _DEFAULT_HEIGHT);
     let title = String::from("InventoryMN");
