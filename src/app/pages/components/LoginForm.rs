@@ -1,21 +1,29 @@
 #![allow(non_snake_case, unused)]
+use std::borrow::BorrowMut;
+
 use dioxus::prelude::*;
 
 pub fn LoginForm() -> Element {
     let login_label_common = "w-full h-12";
-    let login_input_common = "w-full rounded-full h-12 my-4 py-2 px-3 text-stone-800 bg-white ";
+    let login_input_common = "w-full rounded-full h-12 my-4 py-2 px-4 text-stone-800 bg-white ";
 
     let mut input_value = use_signal(|| String::from(""));
     let mut input_field_type = use_signal(|| String::from("password"));
+    let mut eye_closed = use_signal(|| String::from(""));
+    let mut eye_open = use_signal(|| String::from("hidden"));
 
     let mut toggle_password = move |_| {
         let temp_type = input_field_type.to_string();
 
         if temp_type != String::from("text") {
             input_field_type.set(String::from("text"));
+            eye_open.set(String::from(""));
+            eye_closed.set(String::from("hidden"));
             return;
         }
-        input_field_type.set(String::from("password"))
+        input_field_type.set(String::from("password"));
+        eye_open.set(String::from("hidden"));
+        eye_closed.set(String::from(""));
     };
     rsx!(
         div {
@@ -67,30 +75,30 @@ pub fn LoginForm() -> Element {
                                 height: "1.5rem",
                                 view_box: "0 0 24 24",
                                 path {
-                                    class: "password:hidden",
+                                    class: "{eye_closed}",
                                     d: "M9.88 9.88a3 3 0 1 0 4.24 4.24",
                                 },
                                 path {
-                                    class: "password:hidden",
+                                    class: "{eye_closed}",
                                     d: "M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68",
                                 },
                                 path {
-                                    class: "password:hidden",
+                                    class: "{eye_closed}",
                                     d: "M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61",
                                 }
                                 line {
-                                    class: "password:hidden",
+                                    class: "{eye_closed}",
                                     x1: "2",
                                     x2: "22",
                                     y1: "2",
                                     y2 : "22"
                                 }
                                 path{
-                                    class: "hidden password:block",
+                                    class: "{eye_open}",
                                     d: "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z",
                                 }
                                 circle{
-                                    class: "hidden password:block",
+                                    class: "{eye_open}",
                                     cx: "12",
                                     cy: "12",
                                     r: "3",
