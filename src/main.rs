@@ -5,6 +5,8 @@ use dioxus::{
     prelude::*,
 };
 pub mod app;
+pub mod router;
+use tracing::Level;
 
 use app::App::App;
 
@@ -12,6 +14,10 @@ const _TAILWIND_URL: &str = manganis::mg!(file("public/assets/css/tailwind.css")
 const _STYLES_URL: &str = manganis::mg!(file("public/assets/css/styles.css"));
 
 fn main() {
+    tracing_subscriber::fmt()
+        .with_max_level(Level::DEBUG)
+        .init();
+
     const _DEFAULT_WIDTH: i32 = 1024;
     const _DEFAULT_HEIGHT: i32 = 680;
     const _DEFAULT_WINDOW_SIZE: LogicalSize<i32> =
