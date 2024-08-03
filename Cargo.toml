@@ -17,5 +17,8 @@ axum = { version = "0.7.5", features = ["tokio"] }
 log = "0.4.21"
 serde = { version = "1.0.203", features = ["derive"] }
 serde_json = "1.0.118"
-dioxus = { version = "0.5.6", features = ["desktop"] }
+dioxus = { version = "0.5.6", features = ["desktop", "router"] }
+dioxus-router = "0.5.6"
 manganis = "0.2.2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

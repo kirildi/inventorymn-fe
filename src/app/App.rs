@@ -4,17 +4,13 @@ use dioxus::prelude::*;
 
 use crate::app::components::Header::Header;
 use crate::app::pages::WelcomePage::WelcomePage;
+use crate::router::PageRouter::Route;
 
 pub fn App() -> Element {
     rsx!(
         div {
             class: "w-full h-full",
-            Header {},
-            div {
-                class: "flex flex-row m-8",
-                WelcomePage {},
-            }
-
+            Router::<Route> { }
         }
     )
 }
