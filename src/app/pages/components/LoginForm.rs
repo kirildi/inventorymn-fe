@@ -1,8 +1,11 @@
 #![allow(non_snake_case, unused)]
 
+use crate::router::PageRouter::Route;
 use dioxus::prelude::*;
 
 pub fn LoginForm() -> Element {
+    let api_client: Signal<reqwest::Client> = use_context::<Signal<reqwest::Client>>();
+
     let login_label_common = "w-full h-12";
     let login_input_common = "w-full rounded-full h-12 my-4 py-2 px-4 text-stone-800 bg-white ";
 
@@ -24,6 +27,19 @@ pub fn LoginForm() -> Element {
         eye_open.set(String::from("hidden"));
         eye_closed.set(String::from(""));
     };
+
+    let mut sign_in = move |_| {
+        spawn(async move {
+            let mut result = api_client()
+                .get("http://localhost:3000/user/c0bf655e-615f-481a-8ad3-ea16d9557f03")
+                .send()
+                .await;
+            tracing::info!("[LOGIN REQUEST] result is {:?}", result)
+        });
+        let nav = navigator();
+        nav.replace(Route::UserPage {});
+    };
+
     rsx!(
         div {
             class: "px-8 h-full ",
@@ -33,6 +49,8 @@ pub fn LoginForm() -> Element {
             },
             form {
                 class: "flex flex-auto flex-wrap flex-col h-80",
+                prevent_default: "onsubmit",
+                onsubmit: sign_in,
                 div {
                     label {
                         class: "{login_label_common}",
@@ -109,6 +127,7 @@ pub fn LoginForm() -> Element {
                 div {
                     button {
                         class: "w-full h-12 mt-10 rounded-full bg-violet-800",
+                        r#type: "submit",
                         "Sign In"
                     }
                 }
