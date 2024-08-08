@@ -37,7 +37,7 @@ pub fn LoginForm() -> Element {
             tracing::info!("[LOGIN REQUEST] result is {:?}", result)
         });
         let nav = navigator();
-        nav.replace(Route::UserPage {});
+        nav.replace(Route::ComponentsPage {});
     };
 
     rsx!(
