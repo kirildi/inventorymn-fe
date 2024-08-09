@@ -1,12 +1,18 @@
 #![allow(non_snake_case, unused)]
 
+use crate::router::PageRouter::Route;
 use dioxus::prelude::*;
+use std::collections::HashMap;
 
 pub fn LoginForm() -> Element {
-    let login_label_common = "w-full h-12";
-    let login_input_common = "w-full rounded-full h-12 my-4 py-2 px-4 text-stone-800 bg-white ";
+    let api_client: Signal<reqwest::Client> = use_context::<Signal<reqwest::Client>>();
 
-    let mut input_value = use_signal(|| String::from(""));
+    let label_common_style = "w-full h-12";
+    let input_common_style = "w-full rounded-full h-12 my-4 py-2 px-4 text-stone-800 bg-white ";
+
+    let mut username = use_signal(|| String::from(""));
+    let mut password = use_signal(|| String::from(""));
+
     let mut input_field_type = use_signal(|| String::from("password"));
     let mut eye_closed = use_signal(|| String::from(""));
     let mut eye_open = use_signal(|| String::from("hidden"));
@@ -24,6 +30,31 @@ pub fn LoginForm() -> Element {
         eye_open.set(String::from("hidden"));
         eye_closed.set(String::from(""));
     };
+
+    let mut sign_in = move |_| {
+        let mut form_data = HashMap::new();
+        form_data.insert(String::from("username"), username());
+        form_data.insert(String::from("password"), password());
+
+        spawn(async move {
+            let mut result = api_client()
+                .post("http://localhost:3000/login")
+                .json(&form_data)
+                .send()
+                .await;
+            tracing::info!("[LOGIN_RESPONSE] result is {:?}", result);
+            tracing::info!("[LOGIN_FORM]  {:?}", form_data);
+
+            match result.unwrap().error_for_status() {
+                Ok(_res) => {
+                    let nav = navigator();
+                    nav.replace(Route::ComponentsPage {});
+                }
+                Err(err) => tracing::warn!("BAD request !!!"),
+            }
+        });
+    };
+
     rsx!(
         div {
             class: "px-8 h-full ",
@@ -33,35 +64,40 @@ pub fn LoginForm() -> Element {
             },
             form {
                 class: "flex flex-auto flex-wrap flex-col h-80",
+                prevent_default: "onsubmit",
+                onsubmit: sign_in,
                 div {
                     label {
-                        class: "{login_label_common}",
+                        class: "{label_common_style}",
                         r#for: "username",
                         "USERNAME"
                     },
                     input {
-                        class: "{login_input_common}",
+                        class: "{input_common_style}",
                         id: "username",
+                        value: "{username}",
                         r#type: "text",
                         placeholder: "Username",
+                        onchange: move |event| username.set(event.value()),
                         autocomplete: "on"
+
                     }
                 },
                 div {
                     label {
-                        class: "{login_label_common}",
+                        class: "{label_common_style}",
                         r#for: "password",
                         "PASSWORD"
                     },
                     div {
                         class: "relative",
                         input {
-                            class: "{login_input_common} appearance-none",
+                            class: "{input_common_style} appearance-none",
                             id: "password",
-                            value: "{input_value}",
+                            value: "{password}",
                             "type": "{input_field_type}",
                             placeholder: "Password",
-                            onchange: move |event| input_value.set(event.value()),
+                            onchange: move |event| password.set(event.value()),
                             autocomplete: "on"
                         },
                         button {
@@ -109,6 +145,7 @@ pub fn LoginForm() -> Element {
                 div {
                     button {
                         class: "w-full h-12 mt-10 rounded-full bg-violet-800",
+                        r#type: "submit",
                         "Sign In"
                     }
                 }

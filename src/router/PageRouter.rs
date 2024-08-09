@@ -3,7 +3,9 @@
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 
+use crate::app::pages::ComponentsPage::ComponentsPage;
 use crate::app::pages::MainPage::MainPage;
+use crate::app::pages::UserPage::UserPage;
 use crate::app::pages::WelcomePage::WelcomePage;
 
 #[rustfmt::skip]
@@ -12,8 +14,10 @@ pub enum Route {
     #[layout(MainPage)]
         #[route("/")]
         WelcomePage {},
-        // #[nest("/user")]
-    
+        #[route("/user")]
+        UserPage {},
+        #[route("/components")]
+        ComponentsPage {},
         // #[end_nest]
         #[route("/:..route")]
             PageNotFound {

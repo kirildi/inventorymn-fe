@@ -23,3 +23,10 @@ dist
 # dotenv
 .env
 *.env
+
+# database
+*.db
+*.db3
+
+# config
+config.toml
