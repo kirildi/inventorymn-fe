@@ -2,14 +2,17 @@
 
 use crate::router::PageRouter::Route;
 use dioxus::prelude::*;
+use std::collections::HashMap;
 
 pub fn LoginForm() -> Element {
     let api_client: Signal<reqwest::Client> = use_context::<Signal<reqwest::Client>>();
 
-    let login_label_common = "w-full h-12";
-    let login_input_common = "w-full rounded-full h-12 my-4 py-2 px-4 text-stone-800 bg-white ";
+    let label_common_style = "w-full h-12";
+    let input_common_style = "w-full rounded-full h-12 my-4 py-2 px-4 text-stone-800 bg-white ";
 
-    let mut input_value = use_signal(|| String::from(""));
+    let mut username = use_signal(|| String::from(""));
+    let mut password = use_signal(|| String::from(""));
+
     let mut input_field_type = use_signal(|| String::from("password"));
     let mut eye_closed = use_signal(|| String::from(""));
     let mut eye_open = use_signal(|| String::from("hidden"));
@@ -29,15 +32,27 @@ pub fn LoginForm() -> Element {
     };
 
     let mut sign_in = move |_| {
+        let mut form_data = HashMap::new();
+        form_data.insert(String::from("username"), username());
+        form_data.insert(String::from("password"), password());
+
         spawn(async move {
             let mut result = api_client()
-                .get("http://localhost:3000/user/c0bf655e-615f-481a-8ad3-ea16d9557f03")
+                .post("http://localhost:3000/login")
+                .json(&form_data)
                 .send()
                 .await;
-            tracing::info!("[LOGIN REQUEST] result is {:?}", result)
+            tracing::info!("[LOGIN_RESPONSE] result is {:?}", result);
+            tracing::info!("[LOGIN_FORM]  {:?}", form_data);
+
+            match result.unwrap().error_for_status() {
+                Ok(_res) => {
+                    let nav = navigator();
+                    nav.replace(Route::ComponentsPage {});
+                }
+                Err(err) => tracing::warn!("BAD request !!!"),
+            }
         });
-        let nav = navigator();
-        nav.replace(Route::ComponentsPage {});
     };
 
     rsx!(
@@ -53,33 +68,36 @@ pub fn LoginForm() -> Element {
                 onsubmit: sign_in,
                 div {
                     label {
-                        class: "{login_label_common}",
+                        class: "{label_common_style}",
                         r#for: "username",
                         "USERNAME"
                     },
                     input {
-                        class: "{login_input_common}",
+                        class: "{input_common_style}",
                         id: "username",
+                        value: "{username}",
                         r#type: "text",
                         placeholder: "Username",
+                        onchange: move |event| username.set(event.value()),
                         autocomplete: "on"
+
                     }
                 },
                 div {
                     label {
-                        class: "{login_label_common}",
+                        class: "{label_common_style}",
                         r#for: "password",
                         "PASSWORD"
                     },
                     div {
                         class: "relative",
                         input {
-                            class: "{login_input_common} appearance-none",
+                            class: "{input_common_style} appearance-none",
                             id: "password",
-                            value: "{input_value}",
+                            value: "{password}",
                             "type": "{input_field_type}",
                             placeholder: "Password",
-                            onchange: move |event| input_value.set(event.value()),
+                            onchange: move |event| password.set(event.value()),
                             autocomplete: "on"
                         },
                         button {
