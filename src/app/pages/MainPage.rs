@@ -7,7 +7,7 @@ use crate::{app::components::Header::Header, router::PageRouter::Route};
 pub fn MainPage() -> Element {
     rsx!(
         Header {},
-        div {
+        main {
             class: "flex flex-row m-8",
             Outlet::<Route> { }
         }
