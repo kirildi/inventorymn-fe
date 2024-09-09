@@ -2,6 +2,8 @@
 use dioxus::prelude::*;
 use uuid::Uuid;
 
+use crate::app::pages::components::SideNav::SideNav;
+
 pub struct Component {
     pub component_id: Uuid,
     pub component_name: String,
@@ -34,11 +36,8 @@ pub fn ComponentsPage() -> Element {
 
         },
         section {
-            class:"side__nav h-full w-1/4 p-4 text-xl rounded-xl",
-            div {
-                class: "",
-                //TODO include SideNav {}
-            },
+            class:"side__nav h-full w-1/4 text-xl rounded-xl",
+            SideNav {},
             div {
                 class: "",
                 //TODO include StatusBox {}

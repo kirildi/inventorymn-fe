@@ -8,7 +8,7 @@ pub fn MainPage() -> Element {
     rsx!(
         Header {},
         main {
-            class: "flex flex-row m-8",
+            class: "flex flex-row gap-4 m-8",
             Outlet::<Route> { }
         }
     )
