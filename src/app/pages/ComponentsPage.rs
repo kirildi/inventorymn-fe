@@ -5,9 +5,9 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use uuid::Uuid;
 
-use crate::app::pages::components::SideNav::SideNav;
+use crate::app::pages::components::{ComponentCard::ComponentCard, SideNav::SideNav};
 
-#[derive(PartialEq, Clone, Serialize, Deserialize, Debug)]
+#[derive(PartialEq, Clone, Serialize, Deserialize, Debug, Props)]
 pub struct Component {
     pub component_id: Uuid,
     pub component_name: String,
@@ -41,7 +41,7 @@ pub fn ComponentsPage() -> Element {
                 .send()
                 .await
                 .unwrap()
-                .json::<serde_json::Value>()
+                .json::<Vec<Component>>()
                 .await;
             result
         }
@@ -49,9 +49,11 @@ pub fn ComponentsPage() -> Element {
 
     let components_wrapper: Option<VNode> = match &*fetch_components.read() {
         Some(Ok(_res)) => {
-            tracing::info!("[COMPONENTS_RESPONSE] match result.unwrap() is {:?}", _res);
-            //TODO include ComponentCard {}
-            rsx! {""}
+            rsx! {
+                for cc in _res {
+                    ComponentCard { component: cc.clone()}
+                }
+            }
         }
         Some(Err(err)) => {
             tracing::warn!("BAD request !!!, {:?}", err);
@@ -66,7 +68,7 @@ pub fn ComponentsPage() -> Element {
 
     rsx! {
         section {
-            class: "components__section h-full w-3/4 p-4 text-xl rounded-xl bg-zinc-800",
+            class: "components__section flex flex-row flex-wrap gap-4 w-3/4 h-[34rem] p-4 text-xl rounded-xl bg-zinc-800",
             {components_wrapper}
         },
         section {
