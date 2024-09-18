@@ -13,11 +13,12 @@ use crate::app::pages::WelcomePage::WelcomePage;
 pub enum Route {
     #[layout(MainPage)]
         #[route("/")]
-        WelcomePage {},
+        ComponentsPage {},
+//        WelcomePage {},
         #[route("/user")]
         UserPage {},
-        #[route("/components")]
-        ComponentsPage {},
+        // #[route("/components")]
+        // ComponentsPage {},
         // #[end_nest]
         #[route("/:..route")]
             PageNotFound {
