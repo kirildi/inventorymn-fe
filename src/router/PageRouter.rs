@@ -29,11 +29,22 @@ pub enum Route {
 #[component]
 fn PageNotFound(route: Vec<String>) -> Element {
     rsx! {
-        h1 { "Page not found" }
-        p { "We are terribly sorry, but the page you requested doesn't exist." }
-        pre {
-            color: "red",
-            "log:\nattemped to navigate to: {route:?}"
+        div {
+            h1 { "Page not found" },
+            p { "We are terribly sorry, but the page you requested doesn't exist." },
+            p {
+                pre {
+                    color: "red",
+                    "[LOG]:\n Attempted to navigate to: {route:?}"
+                }
+            },
+            p {
+                "Go back to: "
+                Link {
+                    to: "/".to_string(),
+                    "home"
+                }
+            }
         }
     }
 }
