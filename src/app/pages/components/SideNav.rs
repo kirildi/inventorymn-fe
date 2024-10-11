@@ -20,7 +20,7 @@ pub fn SideNav() -> Element {
                         class: "w-40 h-16  p-4 mb-4 rounded-l-xl bg-indigo-900",
                         Link {
                             to: format!("/{}s", nav_button.to_lowercase()),
-                            "{nav_button}",
+                            {format!("{}s", nav_button)},
                         }
                     },
                     CreateButton { label: nav_button.clone() }
