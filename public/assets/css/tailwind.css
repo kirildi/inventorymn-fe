@@ -107,7 +107,7 @@
 }
 
 /*
-! tailwindcss v3.4.13 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.14 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -550,7 +550,7 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden] {
+[hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
 
@@ -587,8 +587,8 @@ video {
   top: 0px;
 }
 
-.top-24 {
-  top: 6rem;
+.top-20 {
+  top: 5rem;
 }
 
 .z-20 {
@@ -617,6 +617,14 @@ video {
   margin-bottom: 1rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -627,6 +635,10 @@ video {
 
 .mt-10 {
   margin-top: 2.5rem;
+}
+
+.block {
+  display: block;
 }
 
 .flex {
@@ -658,12 +670,12 @@ video {
   height: 4rem;
 }
 
-.h-28 {
-  height: 7rem;
+.h-24 {
+  height: 6rem;
 }
 
-.h-36 {
-  height: 9rem;
+.h-28 {
+  height: 7rem;
 }
 
 .h-52 {
@@ -700,6 +712,10 @@ video {
 
 .w-20 {
   width: 5rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .w-3\/4 {
@@ -784,8 +800,20 @@ video {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .overflow-hidden {
@@ -798,6 +826,10 @@ video {
 
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .rounded-xl {
@@ -927,6 +959,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -972,6 +1009,11 @@ video {
   line-height: 2rem;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -982,6 +1024,10 @@ video {
   line-height: 1rem;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .font-light {
   font-weight: 300;
 }
@@ -990,8 +1036,20 @@ video {
   font-weight: 600;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .leading-8 {
   line-height: 2rem;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em;
 }
 
 .text-gray-400 {
@@ -1038,6 +1096,11 @@ body {
 .hover\:bg-indigo-900:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(49 46 129 / var(--tw-bg-opacity));
+}
+
+.focus\:bg-zinc-900:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
 
 .focus\:text-blue-600:focus {

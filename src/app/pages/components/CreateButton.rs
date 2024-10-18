@@ -9,8 +9,6 @@ pub struct CreateButtonProps {
 }
 
 pub fn CreateButton(props: CreateButtonProps) -> Element {
-    let api_client: Signal<reqwest::Client> = use_context::<Signal<reqwest::Client>>();
-
     let mut is_create_pressed = use_signal(|| false);
     let form_name = format!("{}Form", props.label);
     let mut label = props.label;
@@ -29,7 +27,7 @@ pub fn CreateButton(props: CreateButtonProps) -> Element {
             div {
                 class: "form__under__layer fixed left-0 top-0 w-full h-full z-50 bg-black bg-opacity-60",
                 div {
-                    class: "create__form__wrapper relative top-24 mx-24 z-50 rounded-xl bg-zinc-800",
+                    class: "create__form__wrapper relative top-20 mx-24 z-50 rounded-xl bg-zinc-800",
                     div {
                         class: "form__header flex flex-row flex-nowrap p-4",
                         div {
