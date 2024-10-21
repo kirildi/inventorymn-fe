@@ -11,7 +11,6 @@ pub fn ComponentForm() -> Element {
     let mut component_name = use_signal(|| String::from(""));
     let mut component_description = use_signal(|| String::from(""));
     let mut component_image = use_signal(|| String::from(""));
-    let mut installed = use_signal(|| String::from(""));
     let mut install_date = use_signal(|| String::from(""));
 
     let mut create_component = move |_| {
@@ -22,7 +21,7 @@ pub fn ComponentForm() -> Element {
             component_description(),
         );
         form_data.insert(String::from("component_image"), component_image());
-        form_data.insert(String::from("installed"), installed());
+        form_data.insert(String::from("installed"), String::from(""));
         form_data.insert(String::from("status"), String::from(""));
         form_data.insert(String::from("install_date"), String::from(""));
         form_data.insert(String::from("create_date"), String::from(""));
@@ -74,7 +73,7 @@ pub fn ComponentForm() -> Element {
                     },
                     input {
                         id: "component_name",
-                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 text-lg",
+                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
                         placeholder: "e.g. Resistor R10/R10K/R10M",
                         r#type: "text",
                         onchange: move |event| component_name.set(event.value()),
@@ -90,7 +89,7 @@ pub fn ComponentForm() -> Element {
                     },
                     input {
                         id: "component_image",
-                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 text-lg",
+                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
                         placeholder: "e.g. image (url)",
                         r#type: "text",
                         onchange: move |event| component_image.set(event.value()),
@@ -111,7 +110,7 @@ pub fn ComponentForm() -> Element {
                     },
                     input {
                         id: "project_id",
-                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 text-lg",
+                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
                         placeholder: "leave blank for None",
                         r#type: "text",
                     }
@@ -125,8 +124,8 @@ pub fn ComponentForm() -> Element {
                     },
                     input {
                         id: "component_vendor",
-                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 text-lg",
-                        placeholder: "Source/Vendor",
+                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
+                        placeholder: "leave blank for None",
                         r#type: "text",
                     }
                 },
@@ -143,7 +142,7 @@ pub fn ComponentForm() -> Element {
                     },
                     input {
                         id: "location_id",
-                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 text-lg",
+                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
                         placeholder: "leave blank for None",
                         r#type: "text",
                     }
@@ -157,7 +156,7 @@ pub fn ComponentForm() -> Element {
                     },
                     input {
                         id: "installed_on",
-                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 text-lg",
+                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
                         r#type: "date",
                         value: "{install_date}"
                     }
@@ -175,14 +174,14 @@ pub fn ComponentForm() -> Element {
                     },
                     textarea {
                         id: "component_description",
-                        class: "w-full h-24 rounded-lg appearance-none block py-3 px-4 mb-3 text-lg leading-tight focus:outline-none focus:bg-zinc-900",
+                        class: "w-full h-24 rounded-lg appearance-none block py-3 px-4 mb-3 text-lg leading-tight focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 ",
                         placeholder: "Additional info",
                         onchange: move |event| component_description.set(event.value()),
                         value: "{component_description}"
                     }
                 }
             },
-            // Fifth row
+            // Fifth row - form buttons
             div {
                 class: "flex gap-8 w-full items-center justify-center",
                 input {
