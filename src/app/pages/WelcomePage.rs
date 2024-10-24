@@ -1,7 +1,7 @@
 #![allow(non_snake_case, unused)]
 use dioxus::prelude::*;
 
-use crate::app::pages::components::LoginForm::LoginForm;
+use crate::app::pages::components::forms::LoginForm::LoginForm;
 
 pub fn WelcomePage() -> Element {
     rsx!(
