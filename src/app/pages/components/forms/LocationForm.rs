@@ -31,7 +31,7 @@ pub fn LocationForm() -> Element {
                 .send()
                 .await;
             tracing::info!("[LOCATIONS_RESPONSE] result is {:?}", result);
-            tracing::info!("[LOCATIONS_COMPONENT_FORM]  {:?}", form_data);
+            tracing::info!("[LOCATIONS_FORM_DATA]  {:?}", form_data);
 
             match result.unwrap().error_for_status() {
                 Ok(_res) => {
@@ -79,21 +79,21 @@ pub fn LocationForm() -> Element {
                         value: "{location_capacity}"
                     }
                 },
-                div {
-                    class: "flex gap-8 w-full items-center justify-center",
-                    input {
-                        prevent_default: "onclick",
-                        onclick: create_location,
-                        class: "w-24 h-16 p-4 rounded-lg bg-zinc-900 cursor-pointer",
-                        r#type: "submit",
-                        "Create"
-                    },
-                    input {
-                        class: "w-24 h-16 p-4 rounded-lg bg-zinc-900 cursor-pointer",
-                        r#type: "reset",
-                        "Clear"
-                    },
-                }
+            }
+            div {
+                class: "flex gap-8 w-full items-center justify-center",
+                input {
+                    prevent_default: "onclick",
+                    onclick: create_location,
+                    class: "w-24 h-16 p-4 rounded-lg bg-zinc-900 cursor-pointer",
+                    r#type: "submit",
+                    "Create"
+                },
+                input {
+                    class: "w-24 h-16 p-4 rounded-lg bg-zinc-900 cursor-pointer",
+                    r#type: "reset",
+                    "Clear"
+                },
             }
         }
     }

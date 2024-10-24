@@ -181,7 +181,7 @@ pub fn ComponentForm() -> Element {
                     }
                 }
             },
-            // Fifth row - form buttons
+            // Fifth row - form submit buttons
             div {
                 class: "flex gap-8 w-full items-center justify-center",
                 input {
