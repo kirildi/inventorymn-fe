@@ -9,7 +9,7 @@ pub fn LocationForm() -> Element {
     let mut location_name = use_signal(|| String::from(""));
     let mut location_capacity = use_signal(|| String::from(""));
 
-    let mut create_location = move |_| {
+    let mut create_location = move |event: Event<MouseData>| {
         let mut form_data = HashMap::new();
         form_data.insert(String::from("location_name"), location_name());
         form_data.insert(String::from("location_capacity"), location_capacity());
@@ -83,7 +83,6 @@ pub fn LocationForm() -> Element {
             div {
                 class: "flex gap-8 w-full items-center justify-center",
                 input {
-                    prevent_default: "onclick",
                     onclick: create_location,
                     class: "w-24 h-16 p-4 rounded-lg bg-zinc-900 cursor-pointer",
                     r#type: "submit",

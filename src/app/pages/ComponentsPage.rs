@@ -47,7 +47,7 @@ pub fn ComponentsPage() -> Element {
         }
     });
 
-    let components_wrapper: Option<VNode> = match &*fetch_components.read() {
+    let components_wrapper: Result<VNode, RenderError> = match &*fetch_components.read() {
         Some(Ok(_res)) => {
             rsx! {
                 for cc in _res {

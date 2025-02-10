@@ -12,8 +12,8 @@ use tracing::Level;
 
 use app::App::App;
 
-const _TAILWIND_URL: &str = manganis::mg!(file("public/assets/css/tailwind.css"));
-const _STYLES_URL: &str = manganis::mg!(file("public/assets/css/styles.css"));
+const _TAILWIND_URL: Asset = asset!("public/assets/css/tailwind.css");
+const _STYLES_URL: Asset = asset!("public/assets/css/styles.css");
 
 fn main() {
     // tracing_subscriber::fmt().init();

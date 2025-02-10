@@ -15,8 +15,8 @@ pub fn App() -> Element {
             let mut rest_service = RestService::init().await.unwrap();
             rest_service.serve().await;
         });
-        let result = handle.await.unwrap();
-        info!("[REST SERVICE] {:?}", result);
+        // let result = handle.await.unwrap();
+        // info!("[REST SERVICE] {:?}", result);
     });
     rsx!(
         div {
