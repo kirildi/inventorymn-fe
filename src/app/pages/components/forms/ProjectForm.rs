@@ -11,7 +11,8 @@ pub fn ProjectForm() -> Element {
     let mut project_description = use_signal(|| String::from(""));
     let mut project_status = use_signal(|| String::from("IN PROGRESS"));
 
-    let mut create_project = move |_| {
+    let mut create_project = move |event: Event<MouseData>| {
+        event.prevent_default();
         let mut form_data = HashMap::new();
         form_data.insert(String::from("project_name"), project_name());
         form_data.insert(String::from("project_image"), project_image());
@@ -43,6 +44,11 @@ pub fn ProjectForm() -> Element {
                 Err(err) => tracing::warn!("[PROJECT]]BAD request !!!"),
             }
         });
+    };
+
+    let handleOnChange = move |event: Event<FormData>| {
+        event.prevent_default();
+        project_status.set(event.value());
     };
 
     rsx! {
@@ -96,9 +102,8 @@ pub fn ProjectForm() -> Element {
                     },
                     select {
                         id: "project_status",
-                        prevent_default: "onchange",
                         class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
-                        onchange: move |event| project_status.set(event.value()),
+                        onchange: handleOnChange,
                         value: "{project_status}",
                         option {
                             value: "IN PROGRESS",
@@ -143,7 +148,6 @@ pub fn ProjectForm() -> Element {
             div {
                 class: "flex gap-8 w-full items-center justify-center",
                 input {
-                    prevent_default: "onclick",
                     onclick: create_project,
                     class: "w-24 h-16 p-4 rounded-lg bg-zinc-900 cursor-pointer",
                     r#type: "submit",

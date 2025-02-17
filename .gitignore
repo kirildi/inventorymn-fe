@@ -27,6 +27,7 @@ dist
 # database
 *.db
 *.db3
+*.db3*
 
 # config
 config.toml

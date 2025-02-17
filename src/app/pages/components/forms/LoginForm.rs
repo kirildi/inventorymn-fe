@@ -31,7 +31,7 @@ pub fn LoginForm() -> Element {
         eye_closed.set(String::from(""));
     };
 
-    let mut sign_in = move |_| {
+    let mut sign_in = move |event: Event<FormData>| {
         let mut form_data = HashMap::new();
         form_data.insert(String::from("username"), username());
         form_data.insert(String::from("password"), password());
@@ -64,7 +64,6 @@ pub fn LoginForm() -> Element {
             },
             form {
                 class: "flex flex-auto flex-wrap flex-col h-80",
-                prevent_default: "onsubmit",
                 onsubmit: sign_in,
                 div {
                     label {

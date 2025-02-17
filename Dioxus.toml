@@ -17,7 +17,6 @@ asset_dir = "public"
 
 # HTML title tag content
 title = "InventoryMN"
-base_path="."
 
 [web.watcher]
 

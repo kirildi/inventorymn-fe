@@ -8,20 +8,32 @@ license = "GNU GPLv3"
 repository = "https://github.com/kirildi/inventorymn-fe/"
 # homepage = " "
 # documentation = " "
-# rust-version = "1.60.0"
+# rust-version = "1.84.0"
 # publish = false
 
 [dependencies]
-tokio = { version = "1.38.0", features = ["full"]}
-axum = { version = "0.7.5", features = ["tokio"] } 
-log = "0.4.21"
-serde = { version = "1.0.203", features = ["derive"] }
-serde_json = "1.0.118"
-uuid = { version = "1.9.1", features = ["v4","serde"] }
-dioxus = { version = "0.5.6", features = ["desktop", "router"] }
-dioxus-router = "0.5.6"
+tokio = { version = "1.43.0", features = ["full"]}
+axum = { version = "0.8.1", features = ["tokio"] } 
+log = "0.4.22"
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.135"
+uuid = { version = "1.11.1", features = ["v4", "serde"] }
+dioxus = { version = "0.6.2", features = ["desktop", "router"] }
+dioxus-router = "0.6.2"
 manganis = "0.2.2"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 reqwest = { version = "0.12", features = ["json"] }
 inventorymn-be = { version = "0.1.0", path = "../inventorymn-be"} 
+
+[profile]
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"

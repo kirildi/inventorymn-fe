@@ -13,7 +13,7 @@ pub fn ComponentForm() -> Element {
     let mut component_image = use_signal(|| String::from(""));
     let mut install_date = use_signal(|| String::from(""));
 
-    let mut create_component = move |_| {
+    let mut create_component = move |event: Event<MouseData>| {
         let mut form_data = HashMap::new();
         form_data.insert(String::from("component_name"), component_name());
         form_data.insert(
@@ -185,7 +185,6 @@ pub fn ComponentForm() -> Element {
             div {
                 class: "flex gap-8 w-full items-center justify-center",
                 input {
-                    prevent_default: "onclick",
                     onclick: create_component,
                     class: "w-24 h-16 p-4 rounded-lg bg-zinc-900 cursor-pointer",
                     r#type: "submit",
