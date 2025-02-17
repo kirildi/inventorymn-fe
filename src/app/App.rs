@@ -18,10 +18,17 @@ pub fn App() -> Element {
         // let result = handle.await.unwrap();
         // info!("[REST SERVICE] {:?}", result);
     });
-    rsx!(
-        div {
-            class: "w-full h-full",
-            Router::<Route> { }
+    rsx! {
+        document::Link {
+            rel: "stylesheet",
+            href: asset!("/public/assets/css/tailwind.css")
         }
-    )
+        document::Link {
+            rel: "stylesheet",
+            href: asset!("/public/assets/css/styles.css")
+        }
+        div {
+        class: "w-full h-full",
+        Router::<Route> { }
+    }}
 }
