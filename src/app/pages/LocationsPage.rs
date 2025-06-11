@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use uuid::Uuid;
 
-use crate::app::pages::components::{LocationListEntry::LocationListEntry, SideNav::SideNav};
+use crate::app::pages::components::{LocationList::LocationList, SideNav::SideNav};
 
 #[derive(PartialEq, Clone, Serialize, Deserialize, Debug, Props)]
 pub struct Location {
@@ -41,22 +41,20 @@ pub fn LocationsPage() -> Element {
     });
 
     let locations_wrapper: Result<VNode, RenderError> = match &*fetch_locations.read() {
-        Some(Ok(_res)) => {
+        Some(Ok(response_location_list)) => {
             rsx! {
-                for lc in _res {
-                    LocationListEntry { location: lc.clone()}
-                }
+                LocationList { location_list: response_location_list.clone()}
             }
         }
         Some(Err(err)) => {
             tracing::warn!("BAD request !!!, {:?}", err);
             rsx! {
                 h1 {
-                    "No Locations found."
+                    "Internal Error! No Locations found."
                 }
             }
         }
-        None => rsx! {"Loading locations..."},
+        None => rsx! { h1 {"Loading locations..."} },
     };
 
     rsx! {
