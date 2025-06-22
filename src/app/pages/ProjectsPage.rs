@@ -20,7 +20,7 @@ pub struct Project {
     pub user_id: Uuid,
 }
 
-pub fn ComponentsPage() -> Element {
+pub fn ProjectsPage() -> Element {
     let api_client: Signal<reqwest::Client> = use_context::<Signal<reqwest::Client>>();
     let mut components_list: Signal<Vec<Project>> = use_signal(|| Vec::<Project>::new());
 
