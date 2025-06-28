@@ -6,6 +6,7 @@ use dioxus_router::prelude::*;
 use crate::app::pages::ComponentsPage::ComponentsPage;
 use crate::app::pages::LocationsPage::LocationsPage;
 use crate::app::pages::MainPage::MainPage;
+use crate::app::pages::ProjectsPage::ProjectsPage;
 use crate::app::pages::UserPage::UserPage;
 use crate::app::pages::WelcomePage::WelcomePage;
 
@@ -23,6 +24,8 @@ pub enum Route {
         // #[end_nest]
         #[route("/locations")]
         LocationsPage {},
+        #[route("/projects")]
+        ProjectsPage {},
         #[route("/:..route")]
             PageNotFound {
             route: Vec<String>,       
