@@ -12,6 +12,7 @@ pub struct Location {
     pub location_id: Uuid,
     pub location_name: String,
     pub location_capacity: i64,
+    pub location_description: String,
     pub user_id: Uuid,
 }
 
