@@ -8,11 +8,13 @@ pub fn LocationForm() -> Element {
     let api_client: Signal<reqwest::Client> = use_context::<Signal<reqwest::Client>>();
     let mut location_name = use_signal(|| String::from(""));
     let mut location_capacity = use_signal(|| String::from(""));
+    let mut location_description = use_signal(|| String::from(""));
 
     let mut create_location = move |event: Event<MouseData>| {
         let mut form_data = HashMap::new();
         form_data.insert(String::from("location_name"), location_name());
         form_data.insert(String::from("location_capacity"), location_capacity());
+        form_data.insert(String::from("location_description"), location_description());
         form_data.insert(
             String::from("user_id"),
             String::from("b845f7a7-cac0-4879-9ea2-bf685cdf7259"),
@@ -26,7 +28,7 @@ pub fn LocationForm() -> Element {
 
         spawn(async move {
             let mut result = api_client()
-                .post("http://localhost:3000/locations/create")
+                .post("http://localhost:3000/location/create")
                 .json(&json_data)
                 .send()
                 .await;
@@ -45,6 +47,7 @@ pub fn LocationForm() -> Element {
     rsx! {
         form {
             class: "flex flex-wrap gap-4 w-full",
+            // First row
             div {
                 class: "flex w-full justify-between",
                 div {
@@ -79,7 +82,24 @@ pub fn LocationForm() -> Element {
                         value: "{location_capacity}"
                     }
                 },
-            }
+            },
+            // Second row
+            div {
+                class: "flex w-full flex-wrap",
+                label {
+                    class: "block uppercase tracking-wide text-xs font-bold mb-2",
+                    r#for: "location_description",
+                    "Description"
+                },
+                textarea {
+                    id: "location_description",
+                    class: "w-full h-24 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
+                    placeholder: "Enter location description",
+                    onchange: move |event| location_description.set(event.value()),
+                    value: "{location_description}"
+                }
+            },
+            // Third row
             div {
                 class: "flex gap-8 w-full items-center justify-center",
                 input {
