@@ -14,10 +14,10 @@ pub fn ComponentCard(props: ComponentProps) -> Element {
     let toggleInfoBox = move |_| isInfoBoxVisible.set(!isInfoBoxVisible());
     rsx! {
         div {
-            class: "component__wrapper flex flex-nowrap",
+            class: "component__wrapper flex flex-nowrap h-52",
             div {
-                class: format!("component__card relative flex flex-row flex-wrap w-48 h-52 px-4 pt-4 bg-zinc-900 border-neutral-500 {}",
-            if isInfoBoxVisible() {"rounded-l-xl"} else {"rounded-xl"}),
+                class: format!("component__card relative flex flex-row flex-wrap w-48 px-4 pt-4 bg-neutral-800 border-neutral-500 {}",
+                    if isInfoBoxVisible() {"rounded-l-xl"} else {"rounded-xl"}),
                 div {
                     class: "component__card__header w-40 h-28",
                     img {
