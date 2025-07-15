@@ -67,17 +67,9 @@ pub fn ComponentsPage() -> Element {
     };
 
     rsx! {
-        section {
-            class: "components__section flex flex-row flex-wrap gap-4 w-3/4 h-[34rem] p-4 text-xl rounded-xl bg-zinc-800",
+        div {
+            class: "components__section flex flex-1 flex-wrap gap-4 overflow-auto p-4 pb-12 text-xl rounded-xl bg-neutral-900",
             {components_wrapper}
         },
-        section {
-            class:"side__nav h-full w-1/4 text-xl rounded-xl",
-            SideNav {},
-            div {
-                class: "",
-                //TODO include StatusBox {}
-            }
-        }
     }
 }
