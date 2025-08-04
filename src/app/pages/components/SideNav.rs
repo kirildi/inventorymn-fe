@@ -12,12 +12,12 @@ pub fn SideNav() -> Element {
 
     rsx!(
         div {
-            class: "w-56 h-1/2 text-xl rounded-xl pt-0",
+            class: "w-auto h-1/2 text-xl rounded-xl pt-0 sticky top-4",
             for nav_button in nav_buttons {
                 div {
                     class: "inline-flex",
                     div {
-                        class: "w-40 h-16  p-4 mb-4 rounded-l-xl bg-indigo-900",
+                        class: "w-40 h-16 p-4 mb-4 rounded-l-xl bg-purple-900",
                         Link {
                             to: format!("/{}s", nav_button.to_lowercase()),
                             {format!("{}s", nav_button)},

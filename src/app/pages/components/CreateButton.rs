@@ -51,7 +51,7 @@ pub fn CreateButton(props: CreateButtonProps) -> Element {
 
         button {
             onclick: toggle_create_form,
-            class: "w-20 h-16 rounded-r-xl text-center border-l-2 border-l-indigo-400 bg-indigo-700 hover:bg-indigo-900",
+            class: "w-20 h-16 rounded-r-xl text-center bg-purple-700 hover:bg-purple-800",
             "+",
         }
     }
