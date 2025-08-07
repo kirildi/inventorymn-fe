@@ -16,7 +16,7 @@ pub fn ComponentCard(props: ComponentProps) -> Element {
         div {
             class: "component__wrapper flex flex-nowrap h-52",
             div {
-                class: format!("component__card relative flex flex-row flex-wrap w-48 px-4 pt-4 bg-neutral-800 border-neutral-500 {}",
+                class: format!("component__card relative flex flex-row flex-wrap w-48 px-4 pt-4 bg-neutral-800 hover:bg-neutral-700 border-neutral-600 {}",
                     if isInfoBoxVisible() {"rounded-l-xl"} else {"rounded-xl"}),
                 div {
                     class: "component__card__header w-40 h-28 border-neutral-500",
