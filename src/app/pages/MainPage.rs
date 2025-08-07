@@ -2,14 +2,20 @@
 
 use dioxus::prelude::*;
 
-use crate::{app::components::Header::Header, router::PageRouter::Route};
-
+use crate::{
+    app::{components::Header::Header, pages::components::SideNav::SideNav},
+    router::PageRouter::Route,
+};
 pub fn MainPage() -> Element {
     rsx!(
-        Header {},
         main {
-            class: "flex flex-row gap-4 m-8",
-            Outlet::<Route> { }
+            class: "flex flex-col min-h-screen p-8 w-full",
+            Header {},
+            section {
+                class: "grid grid-cols-[3fr_1fr] gap-x-8 flex-1",
+                Outlet::<Route> { }
+                SideNav {},
+            }
         }
     )
 }

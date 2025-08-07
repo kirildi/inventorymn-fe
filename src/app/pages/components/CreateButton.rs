@@ -51,8 +51,20 @@ pub fn CreateButton(props: CreateButtonProps) -> Element {
 
         button {
             onclick: toggle_create_form,
-            class: "w-20 h-16 rounded-r-xl text-center border-l-2 border-l-indigo-400 bg-indigo-700 hover:bg-indigo-900",
-            "+",
+            class: "w-20 h-16 rounded-r-xl text-center bg-purple-700 hover:bg-purple-800",
+            svg {
+                class: "w-8 h-6 block mx-auto",
+                xmlns: "http://www.w3.org/2000/svg",
+                view_box: "0 0 512 512",
+                width: "100%",
+                height: "100%",
+                fill: "currentColor",
+                g {
+                    path {
+                        d: "M480,224H288V32c0-17.673-14.327-32-32-32s-32,14.327-32,32v192H32c-17.673,0-32,14.327-32,32s14.327,32,32,32h192v192   c0,17.673,14.327,32,32,32s32-14.327,32-32V288h192c17.673,0,32-14.327,32-32S497.673,224,480,224z"
+                    }
+                }
+            }
         }
     }
 }

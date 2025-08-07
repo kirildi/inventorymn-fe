@@ -4,7 +4,7 @@ use dioxus::prelude::*;
 pub fn Header() -> Element {
     rsx!(
         header {
-            class: "pt-8 px-8 pb-4",
+            class: "pt-4 px-4 pb-8",
             div {
                 class: "w-auto h-8",
                 span {
@@ -16,9 +16,9 @@ pub fn Header() -> Element {
                     "MN"
                 }
             },
-            div {
-                class: "w-12 h-8"
-            }
+            // div {
+            //     class: "w-12 h-8"
+            // }
         },
     )
 }
