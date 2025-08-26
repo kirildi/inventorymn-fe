@@ -591,12 +591,12 @@ video {
   top: 0px;
 }
 
-.top-20 {
-  top: 5rem;
-}
-
 .top-4 {
   top: 1rem;
+}
+
+.top-8 {
+  top: 2rem;
 }
 
 .z-20 {
@@ -717,6 +717,10 @@ video {
 
 .h-\[34rem\] {
   height: 34rem;
+}
+
+.h-\[calc\(100vh-theme\(spacing\.16\)\)\] {
+  height: calc(100vh - 4rem);
 }
 
 .h-auto {
