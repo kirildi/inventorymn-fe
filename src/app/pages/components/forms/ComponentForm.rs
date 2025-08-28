@@ -13,6 +13,7 @@ pub fn ComponentForm() -> Element {
     let mut component_image = use_signal(|| String::from(""));
     let mut component_vendor = use_signal(|| String::from(""));
     let mut install_date = use_signal(|| String::from(""));
+    let mut quantity = use_signal(|| String::from("1"));
 
     let mut create_component = move |event: Event<FormData>| {
         let mut form_data = HashMap::new();
@@ -39,6 +40,7 @@ pub fn ComponentForm() -> Element {
             String::from("location_id"),
             String::from("00000000-0000-0000-0000-000000000000"),
         );
+        form_data.insert(String::from("quantity"), quantity());
 
         spawn(async move {
             let mut result = api_client()
@@ -170,6 +172,21 @@ pub fn ComponentForm() -> Element {
             // Forth row
             div {
                 class: "w-full",
+                div {
+                    class: "flex flex-col flex-wrap",
+                    label {
+                        class: "block uppercase tracking-wide text-xs font-bold mb-2",
+                        r#for: "quantity",
+                        "Quantity:"
+                    },
+                    input {
+                        id: "quantity",
+                        class: "w-64 h-12 rounded-lg appearance-none block py-3 px-4 mb-3 focus:outline-none focus:bg-zinc-900 placeholder-zinc-600 text-base",
+                        r#type: "text",
+                        value: "{quantity}",
+                        onchange: move |event| quantity.set(event.value())
+                    }
+                },
                 div {
                     class: "flex flex-wrap",
                     label {
