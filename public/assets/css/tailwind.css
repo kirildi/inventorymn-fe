@@ -763,10 +763,6 @@ video {
   width: 6rem;
 }
 
-.w-3\/4 {
-  width: 75%;
-}
-
 .w-36 {
   width: 9rem;
 }
@@ -920,12 +916,12 @@ video {
   border-width: 1px;
 }
 
-.border-2 {
-  border-width: 2px;
-}
-
 .border-l-2 {
   border-left-width: 2px;
+}
+
+.border-r {
+  border-right-width: 1px;
 }
 
 .border-r-2 {

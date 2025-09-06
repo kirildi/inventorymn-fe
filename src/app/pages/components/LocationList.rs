@@ -16,13 +16,13 @@ pub fn LocationList(props: LocationProps) -> Element {
             for lc in props.location_list{
                 li {
                     id: "{lc.location_id}",
-                    class: "locations__wrapper flex flex-nowrap items-center w-full h-16 mb-4 rounded-md bg-neutral-800 border-2",
+                    class: "locations__wrapper flex flex-nowrap items-center w-full h-16 mb-4 rounded-md bg-neutral-800 border",
                     div {
-                        class: "location__name w-2/5 self-start h-auto p-4 border-r-2",
+                        class: "location__name w-2/5 self-start h-auto p-4 border-r ",
                         "{lc.location_name}"
                     },
                     div {
-                        class: "location__capacity w-1/5 self-center text-center h-auto p-4 border-r-2",
+                        class: "location__capacity w-1/5 self-center text-center h-auto p-4 border-r",
                         "{lc.location_capacity}"
                     },
                     div {
