@@ -64,16 +64,8 @@ pub fn ProjectsPage() -> Element {
 
     rsx! {
         section {
-            class: "projects__section flex flex-row flex-wrap gap-4 w-3/4 h-[34rem] p-4 text-xl rounded-xl bg-zinc-800",
+            class: "projects__section flex flex-row flex-wrap gap-4 h-[34rem] p-4 text-xl rounded-xl bg-neutral-900",
             {projects_wrapper}
-        },
-        section {
-            class:"side__nav h-full w-1/4 text-xl rounded-xl",
-            SideNav {},
-            div {
-                class: "",
-                //TODO include StatusBox {}
-            }
         }
     }
 }
