@@ -554,8 +554,12 @@ video {
   display: none;
 }
 
-.visible {
-  visibility: visible;
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
 }
 
 .fixed {
@@ -587,6 +591,10 @@ video {
   left: 0px;
 }
 
+.left-48 {
+  left: 12rem;
+}
+
 .top-0 {
   top: 0px;
 }
@@ -597,6 +605,10 @@ video {
 
 .top-8 {
   top: 2rem;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .z-20 {
@@ -715,6 +727,10 @@ video {
   height: 24rem;
 }
 
+.h-\[32rem\] {
+  height: 32rem;
+}
+
 .h-\[34rem\] {
   height: 34rem;
 }
@@ -821,6 +837,10 @@ video {
           appearance: none;
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .grid-cols-\[3fr_1fr\] {
   grid-template-columns: 3fr 1fr;
 }
@@ -880,6 +900,14 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 
 .text-ellipsis {
@@ -997,16 +1025,8 @@ video {
   --tw-bg-opacity: 0.6;
 }
 
-.fill-neutral-900 {
-  fill: #171717;
-}
-
 .fill-white {
   fill: #fff;
-}
-
-.stroke-purple-400 {
-  stroke: #c084fc;
 }
 
 .stroke-stone-900 {
@@ -1102,6 +1122,11 @@ video {
   line-height: 2rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1185,10 +1210,16 @@ video {
   color: rgb(82 82 91 / var(--tw-placeholder-opacity, 1));
 }
 
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.transition-opacity {
+  transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
