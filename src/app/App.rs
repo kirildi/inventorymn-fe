@@ -32,6 +32,11 @@ pub fn App() -> Element {
             r#type: "text/css",
             href: "https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
         }
+        document::Link {
+            rel: "stylesheet",
+            r#type: "text/css",
+            href: "https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+        }
         div {
         class: "w-full h-full",
         Router::<Route> { }

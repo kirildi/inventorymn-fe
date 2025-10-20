@@ -15,6 +15,7 @@ pub fn ComponentCard(props: ComponentProps) -> Element {
     rsx! {
         div {
             class: "component__wrapper relative flex flex-nowrap h-52",
+            // Component Card
             div {
                 class: format!("component__card relative flex flex-row flex-wrap w-48 px-4 pt-4 bg-neutral-800 hover:bg-neutral-700 border-neutral-600 {}",
                     if isInfoBoxVisible() {"rounded-l-xl"} else {"rounded-xl"}),
@@ -46,46 +47,28 @@ pub fn ComponentCard(props: ComponentProps) -> Element {
                         class: "w-8",
                         onclick: toggleInfoBox,
                         if isInfoBoxVisible() {
-                            svg {
-                                class: "svg__chevron__left size-6",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                view_box: "0 0 24 24",
-                                stroke_width: "1.5",
-                                stroke: "currentColor",
-                                path {
-                                    stroke_linecap: "round",
-                                    stroke_linejoin:"round",
-                                    d: "M15.75 19.5 8.25 12l7.5-7.5",
-                                }
+                            i {
+                                class: "ph-fill ph-info"
                             }
                         }
                         else {
-                            svg {
-                                class: "svg__chevron__right size-6",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                view_box: "0 0 24 24",
-                                stroke_width: "1.5",
-                                stroke: "currentColor",
-                                path {
-                                    stroke_linecap: "round",
-                                    stroke_linejoin: "round",
-                                    d: "m8.25 4.5 7.5 7.5-7.5 7.5",
-                                }
+                            i {
+                                class: "ph ph-info"
                             }
                         }
                     }
                 }
             },
+            // Component Card info box(hidden by default)
             div {
-                class: format!("component__info absolute left-48 z-10 transition-opacity duration-500 ease-in w-48 h-52 p-4 leading-8 bg-neutral-800 rounded-r-xl border-l-2 border-neutral-700 {}",
+                class: format!("component__info absolute left-48 z-10 transition-opacity duration-300 ease-in w-48 h-52 p-4 leading-8 bg-neutral-800 rounded-r-xl border-l-2 border-neutral-700 {}",
                 if isInfoBoxVisible() {"opacity-100 pointer-events-auto"} else {"opacity-0 pointer-events-none"}),
                 ul {
                     // li {"Assigned: {props.project.project_name}"},
                     // li {"Location: {props.location.location_name}"},
                     li {"Status: {props.component.status}"},
                     li {"Installed: {props.component.installed}"},
+                    li {"Description: {props.component.component_description}"},
                     // li {"Category: {props.component.category}"},
                 }
             }

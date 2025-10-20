@@ -9,10 +9,10 @@ use crate::{
 pub fn MainPage() -> Element {
     rsx!(
         main {
-            class: "flex flex-col min-h-screen p-8 w-full",
+            class: "flex flex-col h-screen max-h-screen p-8 pt-4 w-full",
             Header {},
             section {
-                class: "grid grid-cols-[3fr_1fr] gap-x-8 flex-1",
+                class: "grid grid-cols-[3fr_1fr] h-[80vh] max-h-[80vh] gap-x-8",
                 Outlet::<Route> { }
                 SideNav {},
             }
