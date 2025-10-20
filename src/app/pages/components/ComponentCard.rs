@@ -14,7 +14,8 @@ pub fn ComponentCard(props: ComponentProps) -> Element {
     let toggleInfoBox = move |_| isInfoBoxVisible.set(!isInfoBoxVisible());
     rsx! {
         div {
-            class: "component__wrapper flex flex-nowrap h-52",
+            class: "component__wrapper relative flex flex-nowrap h-52",
+            // Component Card
             div {
                 class: format!("component__card relative flex flex-row flex-wrap w-48 px-4 pt-4 bg-neutral-800 hover:bg-neutral-700 border-neutral-600 {}",
                     if isInfoBoxVisible() {"rounded-l-xl"} else {"rounded-xl"}),
@@ -22,35 +23,10 @@ pub fn ComponentCard(props: ComponentProps) -> Element {
                     class: "component__card__header w-40 h-28 border-neutral-500",
                     if (props.component.component_image == ""){
                         div {
-                            class: "w-40 h-28 border rounded-xl text-neutral-500 border-neutral-500",
-                            svg {
-                                class: "svg__no__img w-40 h-28 rounded-xl",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                view_box: "0 0 12 6",
-                                rect {
-                                    class: "fill-neutral-900",
-                                    x: "25%",
-                                    y: "5%",
-                                    rx: "1",
-                                    width: "50%",
-                                    height: "90%",
-                                },
-                                path {
-                                    class: "stroke-purple-400",
-                                    stroke_width: "0.1px",
-                                    stroke_linecap: "round",
-                                    stroke_linejoin:"round",
-                                    d: "M4 1.4 L8 4.5z",
-                                },
-                                path {
-                                    class: "stroke-purple-400",
-                                    stroke_width: "0.1px",
-                                    stroke_linecap: "round",
-                                    stroke_linejoin:"round",
-                                    d: "M8 1.4 L4 4.5z",
-                                }
-                            }
+                            class: "w-40 h-28 flex justify-center items-center border rounded-xl text-neutral-500 border-neutral-500",
+                            i {
+                                class: "ph ph-image-broken text-3xl"
+                            },
                         }
                     }
                     else {
@@ -71,46 +47,28 @@ pub fn ComponentCard(props: ComponentProps) -> Element {
                         class: "w-8",
                         onclick: toggleInfoBox,
                         if isInfoBoxVisible() {
-                            svg {
-                                class: "svg__chevron__left size-6",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                view_box: "0 0 24 24",
-                                stroke_width: "1.5",
-                                stroke: "currentColor",
-                                path {
-                                    stroke_linecap: "round",
-                                    stroke_linejoin:"round",
-                                    d: "M15.75 19.5 8.25 12l7.5-7.5",
-                                }
+                            i {
+                                class: "ph-fill ph-info"
                             }
                         }
                         else {
-                            svg {
-                                class: "svg__chevron__right size-6",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                view_box: "0 0 24 24",
-                                stroke_width: "1.5",
-                                stroke: "currentColor",
-                                path {
-                                    stroke_linecap: "round",
-                                    stroke_linejoin: "round",
-                                    d: "m8.25 4.5 7.5 7.5-7.5 7.5",
-                                }
+                            i {
+                                class: "ph ph-info"
                             }
                         }
                     }
                 }
             },
+            // Component Card info box(hidden by default)
             div {
-                class: format!("transition duration-500 ease-in component__info w-48 h-52 p-4 leading-8 bg-neutral-800 rounded-r-xl border-l-2 border-neutral-700 {}",
-                if isInfoBoxVisible() {"visible"} else {"hidden"}),
+                class: format!("component__info absolute left-48 z-10 transition-opacity duration-300 ease-in w-48 h-52 p-4 leading-8 bg-neutral-800 rounded-r-xl border-l-2 border-neutral-700 {}",
+                if isInfoBoxVisible() {"opacity-100 pointer-events-auto"} else {"opacity-0 pointer-events-none"}),
                 ul {
                     // li {"Assigned: {props.project.project_name}"},
                     // li {"Location: {props.location.location_name}"},
                     li {"Status: {props.component.status}"},
                     li {"Installed: {props.component.installed}"},
+                    li {"Description: {props.component.component_description}"},
                     // li {"Category: {props.component.category}"},
                 }
             }

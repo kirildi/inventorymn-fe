@@ -68,7 +68,7 @@ pub fn ComponentsPage() -> Element {
 
     rsx! {
         div {
-            class: "components__section flex flex-1 flex-wrap gap-4 overflow-auto p-4 pb-12 text-xl rounded-xl bg-neutral-900",
+            class: "components__section grid grid-cols-3 relative gap-4 overflow-x-hidden overflow-y-auto p-4 pb-12 text-xl rounded-xl bg-neutral-900",
             {components_wrapper}
         },
     }
