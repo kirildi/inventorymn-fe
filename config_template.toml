@@ -1,0 +1,41 @@
+# ==================================
+# InventoryMN Configuration Template
+# ==================================
+
+[database]
+# Path to the SQLite database file.
+# Used only if you're running in local mode.
+# The name of the created database is deduced from the "db_path"
+# Typical SQLite DB file extension formats: .sqlite, .sqlite3, .db, .db3, .s3db, .sl3
+db_path = "./dbname.db3"
+
+[database.external]
+# Type of external database: "postgres", "mysql", etc.
+type = "postgres"
+
+# Name of the external database.
+db_name = ""
+
+# Username for authentication.
+username = ""
+
+# Password for authentication.
+password = ""
+
+# Hostname or IP address of the external DB server.
+host = "localhost"
+
+# Port number the DB server listens on.
+port = 5432
+
+[host]
+# The host where your backend service is running.
+# This is used by the frontend to communicate with the backend.
+url = "http://localhost"
+
+# The port your backend service listens on.
+port = 3000
+
+[api]
+# The name of the API endpoint the frontend will use.
+endpoint = "api"
