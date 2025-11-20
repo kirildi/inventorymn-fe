@@ -2,6 +2,7 @@ pub mod ComponentsPage;
 pub mod LocationsPage;
 pub mod MainPage;
 pub mod ProjectsPage;
+pub mod SharedComponentPage;
 pub mod SingleComponentPage;
 pub mod UserPage;
 pub mod WelcomePage;

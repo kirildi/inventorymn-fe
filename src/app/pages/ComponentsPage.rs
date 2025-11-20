@@ -5,7 +5,10 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use uuid::Uuid;
 
-use crate::app::pages::components::{ComponentCard::ComponentCard, SideNav::SideNav};
+use crate::{
+    app::pages::components::{ComponentCard::ComponentCard, SideNav::SideNav},
+    router::PageRouter::Route,
+};
 
 #[derive(PartialEq, Clone, Serialize, Deserialize, Debug, Props)]
 pub struct Component {

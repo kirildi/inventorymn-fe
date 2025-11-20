@@ -3,10 +3,13 @@
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 
+use crate::app::pages::ComponentsPage::Component;
 use crate::app::pages::ComponentsPage::ComponentsPage;
 use crate::app::pages::LocationsPage::LocationsPage;
 use crate::app::pages::MainPage::MainPage;
 use crate::app::pages::ProjectsPage::ProjectsPage;
+use crate::app::pages::SharedComponentPage::SharedComponentPage;
+use crate::app::pages::SingleComponentPage::SingleComponentPage;
 use crate::app::pages::UserPage::UserPage;
 use crate::app::pages::WelcomePage::WelcomePage;
 
@@ -16,12 +19,15 @@ pub enum Route {
     #[layout(MainPage)]
         #[route("/")]
         ComponentsPage {},
+        #[nest("/c")]
+            #[route("/")]
+            SharedComponentPage {},
+            #[route("/:name")]
+            SingleComponentPage { name: String},
+        #[end_nest]    
 //        WelcomePage {},
         #[route("/user")]
         UserPage {},
-        // #[route("/components")]
-        // ComponentsPage {},
-        // #[end_nest]
         #[route("/locations")]
         LocationsPage {},
         #[route("/projects")]
