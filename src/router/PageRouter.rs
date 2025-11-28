@@ -14,7 +14,7 @@ use crate::app::pages::UserPage::UserPage;
 use crate::app::pages::WelcomePage::WelcomePage;
 
 #[rustfmt::skip]
-#[derive(Clone, Debug, PartialEq, Routable)]
+#[derive(Routable, Clone, Debug, PartialEq)]
 pub enum Route {
     #[layout(MainPage)]
         #[route("/")]
@@ -23,7 +23,7 @@ pub enum Route {
             #[route("/")]
             SharedComponentPage {},
             #[route("/:name")]
-            SingleComponentPage { name: String},
+            SingleComponentPage { name: String, component: Component},
         #[end_nest]    
 //        WelcomePage {},
         #[route("/user")]

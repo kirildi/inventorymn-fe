@@ -4,5 +4,5 @@ use dioxus::prelude::*;
 use crate::router::PageRouter::Route;
 
 pub fn SharedComponentPage() -> Element {
-    rsx! {Outlet::<Route> {}, "ASDDSA"}
+    rsx! { Outlet::<Route> {} }
 }

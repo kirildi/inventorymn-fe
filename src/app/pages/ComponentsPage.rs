@@ -10,7 +10,7 @@ use crate::{
     router::PageRouter::Route,
 };
 
-#[derive(PartialEq, Clone, Serialize, Deserialize, Debug, Props)]
+#[derive(PartialEq, Clone, Serialize, Deserialize, Debug, Props, Default)]
 pub struct Component {
     pub component_id: Uuid,
     pub component_name: String,

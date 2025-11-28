@@ -5,15 +5,33 @@ use crate::app::pages::ComponentsPage::Component;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct SingleComponentProps {
-    pub name: String,
-    // component: Component,
+    name: String,
+    component: Component,
 }
 
 pub fn SingleComponentPage(props: SingleComponentProps) -> Element {
     rsx!(
-        h1 {
-            class: "text-2xl",
-            "Single Component {props.name}"
+        div {
+            class: "",
+            div {
+                class: "single__component__header flex justify-around text-2xl w-full h-16 p-4 bg-zinc-700",
+                div {
+                    class:"single__component__title",
+                    h2 {
+                        "{props.name}"
+                    }
+                    div {
+                        class: "single__component__controls",
+                        ul {
+                            li { },
+                            li { },
+                        }
+                    },
+                }
+            }
+            div {
+                class: "single__component__body w-full",
+            }
         }
     )
 }
